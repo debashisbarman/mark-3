@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Alert,
@@ -52,7 +53,7 @@ const Editor = ({ reset, src = '', visible }) => {
 
   const withAnim = useRef(new Animated.Value(40)).current;
 
-  const onChangeSelectedColor = color => () => {
+  const onChangeSelectedColor = (color) => () => {
     setExpanded(false);
 
     setSelectedColor(color);
@@ -77,7 +78,7 @@ const Editor = ({ reset, src = '', visible }) => {
   };
 
   const onUndo = () => {
-    setPaths(state => state.slice(0, -1));
+    setPaths((state) => state.slice(0, -1));
   };
 
   const onSubmit = async () => {
@@ -118,13 +119,13 @@ const Editor = ({ reset, src = '', visible }) => {
     }
   };
 
-  const onTouchMove = event => {
+  const onTouchMove = (event) => {
     const newPath = [...currentPath];
 
     const { locationX, locationY } = event.nativeEvent;
 
     const newPoint = `${newPath.length === 0 ? 'M' : ''}${locationX.toFixed(
-      0,
+      0
     )},${locationY.toFixed(0)} `;
 
     newPath.push(newPoint);
@@ -145,7 +146,7 @@ const Editor = ({ reset, src = '', visible }) => {
   };
 
   const toggleOpen = () => {
-    setExpanded(state => !state);
+    setExpanded((state) => !state);
   };
 
   useEffect(() => {
@@ -154,7 +155,7 @@ const Editor = ({ reset, src = '', visible }) => {
       duration: 500,
       useNativeDriver: false,
     }).start();
-  }, [expanded]);
+  }, [expanded, withAnim]);
 
   return (
     <Modal animationType="slide" transparent visible={visible}>
@@ -177,7 +178,8 @@ const Editor = ({ reset, src = '', visible }) => {
               {
                 width: withAnim,
               },
-            ]}>
+            ]}
+          >
             <TouchableRipple
               borderless={false}
               centered
@@ -188,10 +190,11 @@ const Editor = ({ reset, src = '', visible }) => {
                   backgroundColor: selectedColor,
                   borderColor: theme.colors.background,
                 },
-              ]}>
+              ]}
+            >
               <View />
             </TouchableRipple>
-            {Colors.filter(c => c !== selectedColor).map((c, i) => (
+            {Colors.filter((c) => c !== selectedColor).map((c, i) => (
               <TouchableRipple
                 borderless={false}
                 centered
@@ -203,7 +206,8 @@ const Editor = ({ reset, src = '', visible }) => {
                     backgroundColor: c,
                     borderColor: theme.colors.background,
                   },
-                ]}>
+                ]}
+              >
                 <View />
               </TouchableRipple>
             ))}
@@ -211,15 +215,18 @@ const Editor = ({ reset, src = '', visible }) => {
         </Appbar>
         <ScrollView
           contentContainerStyle={{ alignItems: 'center' }}
-          style={styles.container}>
+          style={styles.container}
+        >
           <View
             style={styles.svgContainer}
             onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}>
+            onTouchEnd={onTouchEnd}
+          >
             <ImageBackground
               ref={viewRef}
               resizeMode="contain"
-              source={{ uri: src }}>
+              source={{ uri: src }}
+            >
               <Svg height={height} width={width}>
                 <Path
                   d={currentPath.join('')}
@@ -247,7 +254,8 @@ const Editor = ({ reset, src = '', visible }) => {
         </ScrollView>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.footerContainer}>
+          style={styles.footerContainer}
+        >
           <TextInput
             mode="outlined"
             placeholder="Write a comment"
@@ -260,7 +268,8 @@ const Editor = ({ reset, src = '', visible }) => {
             loading={loading}
             mode="contained"
             onPress={onSubmit}
-            style={{ marginTop: 8, marginLeft: 8 }}>
+            style={{ marginTop: 8, marginLeft: 8 }}
+          >
             Add
           </Button>
         </KeyboardAvoidingView>

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
@@ -21,13 +22,15 @@ const Widget = ({ visible, onPress }) => {
         touchableOpacityProps={{ activeOpacity: 0 }}
         x={Dimensions.get('window').width - (72 + 16)}
         y={Dimensions.get('window').height - (72 + 16)}
-        z={999999999}>
+        z={999999999}
+      >
         <View
           elevation={8}
           style={[
             styles.buttonContainer,
             { backgroundColor: theme.colors.tertiary },
-          ]}>
+          ]}
+        >
           <Image
             source={require('../assets/ic_bug.png')}
             style={{
