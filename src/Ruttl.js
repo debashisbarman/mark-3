@@ -41,7 +41,8 @@ const Ruttl = () => {
 
       setVisible(true);
     } catch (e) {
-      Alert.alert('Something went wrong!');
+      Alert.alert(e.toString());
+      setWidgetVisible(true);
     }
   };
 
