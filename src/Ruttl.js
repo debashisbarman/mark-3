@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { Alert, StyleSheet, View } from 'react-native';
 import { captureScreen } from 'react-native-view-shot';
 import { MD3LightTheme, Provider as PaperProvider } from 'react-native-paper';
 import Editor from './components/Editor';
@@ -47,27 +46,25 @@ const Ruttl = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <PaperProvider
-          theme={{
-            ...MD3LightTheme,
-            colors: {
-              ...MD3LightTheme.colors,
-              primary: '#6552ff',
-              background: '#ffffff',
-              surface: '#ffffff',
-              surfaceDisabled: 'rgb(229, 225, 236)',
-              tertiary: '#160647',
-            },
-            roundness: 50,
-          }}
-        >
-          <Editor reset={onReset} src={src} visible={visible} />
-          <Widget onPress={onScreenCapture} visible={widgetVisible} />
-        </PaperProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      <PaperProvider
+        theme={{
+          ...MD3LightTheme,
+          colors: {
+            ...MD3LightTheme.colors,
+            primary: '#6552ff',
+            background: '#ffffff',
+            surface: '#ffffff',
+            surfaceDisabled: 'rgb(229, 225, 236)',
+            tertiary: '#160647',
+          },
+          roundness: 50,
+        }}
+      >
+        <Editor reset={onReset} src={src} visible={visible} />
+        <Widget onPress={onScreenCapture} visible={widgetVisible} />
+      </PaperProvider>
+    </View>
   );
 };
 
