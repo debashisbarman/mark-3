@@ -9,6 +9,7 @@ import * as Sentry from '@sentry/react-native';
 Sentry.init({
   dsn: 'https://5f5d9a739f4a4b2ca5605363a6ab3de4@o542627.ingest.sentry.io/4505050929627136',
   tracesSampleRate: 1.0,
+  enableNative: false,
 });
 
 const Ruttl = () => {
