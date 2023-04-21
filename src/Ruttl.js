@@ -4,6 +4,12 @@ import { captureScreen } from 'react-native-view-shot';
 import { MD3LightTheme, Provider as PaperProvider } from 'react-native-paper';
 import Editor from './components/Editor';
 import Widget from './components/Widget';
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://5f5d9a739f4a4b2ca5605363a6ab3de4@o542627.ingest.sentry.io/4505050929627136',
+  tracesSampleRate: 1.0,
+});
 
 const Ruttl = () => {
   const [src, setSrc] = useState('');
@@ -41,7 +47,8 @@ const Ruttl = () => {
 
       setVisible(true);
     } catch (e) {
-      Alert.alert(e.toString());
+      Sentry.captureException(e);
+
       setWidgetVisible(true);
     }
   };
